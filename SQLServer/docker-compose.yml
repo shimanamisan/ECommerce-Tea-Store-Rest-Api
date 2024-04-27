@@ -1,0 +1,21 @@
+volumes:
+  db-store:
+    name: mssql-rest-api-db-store
+
+services:
+  db:
+    container_name: mssql-rest-api-db
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: mssql-rest-api-db:1.0
+    environment:
+      SA_PASSWORD: Hn_Pgtech1234
+      MSSQL_PID: Express
+      MSSQL_COLLATION: Japanese_CI_AS
+      MSSQL_LCID: 1041
+      ACCEPT_EULA: Y
+    ports:
+      - 1433:1433
+    volumes:
+      - db-store:/var/opt/mssql
